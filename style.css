@@ -46,6 +46,13 @@ html, body {
   color: #888;
   animation: pulse 1.5s ease-in-out infinite;
 }
+#version {
+  position: absolute;
+  bottom: calc(env(safe-area-inset-bottom) + 1vmin);
+  right: calc(env(safe-area-inset-right) + 2vmin);
+  font: 3vmin monospace;
+  color: #444;
+}
 #splash.started #splash-hint { visibility: hidden; }
 #splash.hidden { opacity: 0; pointer-events: none; }
 @keyframes pulse { 50% { opacity: 0.3; } }

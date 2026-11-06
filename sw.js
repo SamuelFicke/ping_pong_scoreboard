@@ -3,7 +3,7 @@
 // Other apps share the samuelficke.github.io origin (and its cache storage),
 // so only ever delete caches with this app's PREFIX.
 const PREFIX = "ping-pong-";
-const VERSION = PREFIX + "v2";
+const VERSION = PREFIX + "v3";
 const FILES = [
   "./",
   "index.html",
@@ -21,7 +21,8 @@ const FILES = [
 ];
 
 self.addEventListener("install", (e) => {
-  e.waitUntil(caches.open(VERSION).then((c) => c.addAll(FILES)));
+  e.waitUntil(caches.open(VERSION).then((c) =>
+    c.addAll(FILES.map((f) => new Request(f, { cache: "reload" })))));
   self.skipWaiting();
 });
 
@@ -35,7 +36,19 @@ self.addEventListener("activate", (e) => {
   self.clients.claim();
 });
 
+// Network first so the newest version loads whenever you're online; the cache
+// is only used offline.
 self.addEventListener("fetch", (e) => {
-  e.respondWith(caches.match(e.request, { cacheName: VERSION })
-    .then((hit) => hit || fetch(e.request)));
+  if (e.request.method !== "GET") return;
+  e.respondWith(
+    fetch(e.request, { cache: "no-cache" })
+      .then((res) => {
+        if (res.ok) {
+          const copy = res.clone();
+          caches.open(VERSION).then((c) => c.put(e.request, copy));
+        }
+        return res;
+      })
+      .catch(() => caches.match(e.request, { cacheName: VERSION }))
+  );
 });
