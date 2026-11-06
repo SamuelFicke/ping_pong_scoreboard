@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Ping Pong">
+  <meta name="theme-color" content="#000000">
+  <title>Ping Pong Scoreboard</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="images/icon-192.png">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="splash">
+    <img src="images/ea_sports.jpg" alt="">
+    <div id="splash-hint">tap to start</div>
+  </div>
+
+  <main id="board">
+    <div id="title">JPX</div>
+
+    <section class="team" id="away-zone" data-team="away">
+      <div class="label">AWAY</div>
+      <div class="score" id="away-score">0</div>
+    </section>
+
+    <section id="center-zone">
+      <div id="serve">&lt;-&nbsp;&nbsp;</div>
+      <div id="hint">tap for<br>new game</div>
+    </section>
+
+    <section class="team" id="home-zone" data-team="home">
+      <div class="label">HOME</div>
+      <div class="score" id="home-score">0</div>
+    </section>
+
+    <nav id="controls">
+      <button id="reset">reset</button>
+    </nav>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
