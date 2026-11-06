@@ -1,6 +1,6 @@
 @font-face {
-  font-family: "Harry P";
-  src: url("fonts/harryp.ttf") format("truetype");
+  font-family: "Black Ops One";
+  src: url("fonts/black-ops-one.ttf") format("truetype");
 }
 @font-face {
   font-family: "Seven Segment";
@@ -41,7 +41,7 @@ html, body {
   object-fit: contain;
 }
 #splash-hint {
-  font-family: "Harry P", serif;
+  font-family: "Black Ops One", sans-serif;
   font-size: 7vmin;
   color: #888;
   animation: pulse 1.5s ease-in-out infinite;
@@ -77,7 +77,7 @@ html, body {
 
 #title {
   grid-area: title;
-  font-family: "Harry P", serif;
+  font-family: "Black Ops One", sans-serif;
   font-size: min(20vh, 12vw);
   line-height: 1;
   text-align: center;
@@ -96,7 +96,7 @@ html, body {
 #center-zone { grid-area: center; }
 
 .label {
-  font-family: "Harry P", serif;
+  font-family: "Black Ops One", sans-serif;
   font-size: min(13vh, 8vw);
   line-height: 1;
 }
@@ -135,9 +135,9 @@ html, body {
   padding: 0.25em 1em;
   touch-action: manipulation;
 }
-#controls #reset { font-family: "Harry P", serif; }
+#controls #reset { font-family: "Black Ops One", sans-serif; }
 #hint {
-  font-family: "Harry P", serif;
+  font-family: "Black Ops One", sans-serif;
   font-size: min(14vh, 8vw);
   line-height: 1.1;
   text-align: center;

@@ -30,3 +30,4 @@ After changing any file, bump `VERSION` in `sw.js` so installed phones fetch the
 ## Credits
 App icon: 🏓 ping pong emoji from [Twemoji](https://github.com/jdecked/twemoji),
 © Twitter, Inc. and other contributors, licensed under [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/).
+- Font: [Black Ops One](https://fonts.google.com/specimen/Black+Ops+One), SIL Open Font License 1.1 (see `fonts/black-ops-one-OFL.txt`).
