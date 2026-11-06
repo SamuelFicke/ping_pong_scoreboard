@@ -26,3 +26,7 @@ After changing any file, bump `VERSION` in `sw.js` so installed phones fetch the
 
 ## Local testing
 `python3 -m http.server 8000` in this folder, then open http://localhost:8000.
+
+## Credits
+App icon: 🏓 ping pong emoji from [Twemoji](https://github.com/jdecked/twemoji),
+© Twitter, Inc. and other contributors, licensed under [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/).

@@ -3,7 +3,7 @@
 // Other apps share the samuelficke.github.io origin (and its cache storage),
 // so only ever delete caches with this app's PREFIX.
 const PREFIX = "ping-pong-";
-const VERSION = PREFIX + "v1";
+const VERSION = PREFIX + "v2";
 const FILES = [
   "./",
   "index.html",
