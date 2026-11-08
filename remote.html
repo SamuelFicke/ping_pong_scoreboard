@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" data-app="pong">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Remote">
+  <meta name="theme-color" content="#000000">
+  <title>Scoreboard remote</title>
+  <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+  <link rel="stylesheet" href="remote.css">
+</head>
+<body>
+  <header>
+    <div id="app-title">Scoreboard remote</div>
+    <div id="status">Connecting…</div>
+  </header>
+
+  <main>
+    <section class="team" id="away">
+      <div class="label">AWAY <span class="ball">serving</span></div>
+      <div class="score" id="away-score">–</div>
+      <button class="plus" data-cmd="add:away">+1</button>
+      <button class="minus" data-cmd="sub:away">−1</button>
+    </section>
+    <section class="team" id="home">
+      <div class="label">HOME <span class="ball">serving</span></div>
+      <div class="score" id="home-score">–</div>
+      <button class="plus" data-cmd="add:home">+1</button>
+      <button class="minus" data-cmd="sub:home">−1</button>
+    </section>
+  </main>
+
+  <div id="note"></div>
+  <button id="go" hidden>GO</button>
+  <nav>
+    <button id="serve" data-cmd="serve">switch serve</button>
+    <div id="timers" hidden></div>
+    <button id="reset">reset</button>
+  </nav>
+
+  <script src="vendor/peerjs.min.js"></script>
+  <script src="remote-page.js"></script>
+</body>
+</html>

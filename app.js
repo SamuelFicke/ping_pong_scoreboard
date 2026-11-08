@@ -72,7 +72,7 @@ function unlockAudio() {
     unlocked = true;
   }
 }
-["pointerdown", "touchstart", "touchend", "click"].forEach((type) =>
+["pointerdown", "touchstart", "touchend", "click", "keydown"].forEach((type) =>
   document.addEventListener(type, unlockAudio, { capture: true, passive: true }));
 
 async function play(name) {
@@ -115,6 +115,7 @@ function render() {
   el.serve.textContent = state.serve === "home" ? "  ->" : "<-  ";
   el.serve.style.display = state.gameOver ? "none" : "";
   el.hint.style.display = state.gameOver && !state.busy ? "block" : "none";
+  if (window.onBoardChange) window.onBoardChange();
 }
 
 // ---------------- game logic ----------------
@@ -221,12 +222,43 @@ $("title").addEventListener("click", () => {
   if (!state.busy && state.gameOver) newGame();
 });
 
+function resetScores() {
+  Object.assign(state, { home: 0, away: 0, gameOver: false, serve: state.firstServer });
+  render();
+}
 $("reset").addEventListener("click", () => {
   if (state.busy) return;
   if (!confirm("Reset the score to 0-0?")) return;
-  Object.assign(state, { home: 0, away: 0, gameOver: false, serve: state.firstServer });
-  render();
+  resetScores();
 });
+
+// ---------------- commands from a number pad or phone remote (remote.js) ----------------
+// Same rules as touch: after a win, a point press starts a new game; -1 can take the winning point back.
+function command(cmd) {
+  if (!el.splash.classList.contains("hidden") || state.busy) return;
+  const [name, arg] = String(cmd).split(":");
+  const team = arg === "home" || arg === "away" ? arg : null;
+  if (name === "add" && team) {
+    if (state.gameOver) newGame(); else addPoint(team);
+  } else if (name === "sub" && team) {
+    removePoint(team);
+  } else if (name === "serve") {
+    if (state.gameOver) newGame(); else { toggleServe(); render(); }
+  } else if (name === "go") {
+    if (state.gameOver) newGame();
+  } else if (name === "reset") {
+    resetScores();
+  }
+}
+window.board = {
+  app: "pong",
+  title: "Ping Pong",
+  command,
+  snapshot: () => ({
+    app: "pong", title: "Ping Pong", home: state.home, away: state.away, serve: state.serve, busy: state.busy,
+    pending: null, pendingIsWin: false, gameOver: state.gameOver, timers: [],
+  }),
+};
 
 // Keep iOS from zooming / scrolling on double taps and pinches.
 document.addEventListener("gesturestart", (e) => e.preventDefault());

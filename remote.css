@@ -1,0 +1,80 @@
+/* Phone remote page (same file in both apps). Board styles for the QR screen are in style.css. */
+@font-face {
+  font-family: "Black Ops One";
+  src: url("fonts/black-ops-one.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Seven Segment";
+  src: url("fonts/seven-segment.ttf") format("truetype");
+}
+
+* { box-sizing: border-box; }
+html, body {
+  margin: 0;
+  height: 100%;
+  background: #000;
+  color: #fff;
+  font-family: -apple-system, system-ui, sans-serif;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  overscroll-behavior: none;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: max(12px, env(safe-area-inset-top)) 14px max(14px, env(safe-area-inset-bottom));
+}
+
+header { text-align: center; }
+#app-title { font-family: "Black Ops One", sans-serif; font-size: 26px; }
+#status { font-size: 14px; color: #f66; margin-top: 2px; min-height: 1.2em; }
+#status.ok { color: #6c6; }
+
+main { flex: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; min-height: 0; }
+.team { display: flex; flex-direction: column; gap: 10px; min-height: 0; }
+.label { font-family: "Black Ops One", sans-serif; font-size: 22px; text-align: center; color: #888; }
+.ball {
+  display: inline-block; visibility: hidden; font-family: -apple-system, system-ui, sans-serif;
+  font-size: 12px; color: #fff; background: red; border-radius: 1em; padding: 1px 7px; vertical-align: middle;
+}
+.team.serving .ball { visibility: visible; }
+.score { font-family: "Seven Segment", monospace; font-size: 64px; text-align: center; line-height: 1; }
+#away .score { color: orange; }
+#home .score { color: #0f0; }
+
+button {
+  font: inherit;
+  color: #fff;
+  background: #1a1a1a;
+  border: 2px solid #333;
+  border-radius: 18px;
+  touch-action: manipulation;
+}
+button:active:not(:disabled) { filter: brightness(1.8); }
+button:disabled { opacity: 0.3; }
+
+.plus { flex: 1; min-height: 120px; font-family: "Black Ops One", sans-serif; font-size: 52px; }
+#away .plus { border-color: orange; background: #2a1a00; }
+#home .plus { border-color: #0f0; background: #002a00; }
+.minus { height: 64px; font-size: 26px; color: #aaa; }
+
+#note { text-align: center; font-size: 16px; color: #ccc; min-height: 1.2em; }
+#go {
+  height: 84px; font-family: "Black Ops One", sans-serif; font-size: 36px;
+  background: #3a0000; border-color: red;
+}
+#go[hidden] { display: none; }
+
+nav { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+nav > button, #timers button { height: 56px; padding: 0 18px; font-size: 18px; color: #bbb; }
+#serve { flex: 1 1 100%; }
+#timers { display: flex; gap: 10px; flex: 1; }
+#timers[hidden] { display: none; }
+#timers button { flex: 1; font-family: "Seven Segment", monospace; font-size: 24px; }
+#timers button.active { color: red; border-color: red; }
+#reset { font-family: "Black Ops One", sans-serif; }
+
+body:not(.connected) main, body:not(.connected) nav { opacity: 0.4; }
